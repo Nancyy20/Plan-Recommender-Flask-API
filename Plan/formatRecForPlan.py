@@ -7,55 +7,14 @@ import pandas as pd
 from attractions_reccommendation import rbm
 from datetime import datetime
 
-
-############################################################################
-# import os
-# from pyspark.sql import SparkSession
-#
-# spark = SparkSession.builder.appName("Recommendation").getOrCreate()
-#
-# base_dir = "TravelRecommeder_Flask-master"
-# plan_dir = os.path.join( "Plan")
-# rest_dir = os.path.join( "Restaurants")
-# attract_dir = os.path.join("attractions_reccommendation")
-#
-# def getRecommendationForPlanRest(userID, City):
-#     print("getRecommendationForPlanRest called")
-#     hello()
-#     try:
-#         csvRestInfo = os.path.join(plan_dir, "Allrestaurants2.csv")
-#         timesCsv = os.path.join(plan_dir, "Allrestaurants3.csv")
-#         csvRatingInfoRest = os.path.join( "user_profiling_rest.csv")
-#         print("File paths defined")
-#         timesSpark = spark.read.csv(timesCsv, header=True)
-#         print("timesSpark loaded")
-#         ratingsSparkRest, rest = initial_files_Rest(csvRestInfo, csvRatingInfoRest)
-#         print("initial_files_Rest completed")
-#         calculateSparsityRest(ratingsSparkRest)
-#         print("calculateSparsityRest completed")
-#         trainR, testR = dataSplit_Rest(ratingsSparkRest)
-#         print('train--------',trainR.count())
-#         print('test-------------',testR.count())
-#         print("dataSplit_Rest completed")   ############# fine till here
-#         best_model = MF_ALS_Rest(trainR, testR)
-#         print("MF_ALS_Rest completed")
-#         df = recommendationsRestPlan(best_model, userID, rest, City, timesSpark)
-#         print("recommendationsRestPlan completed")
-#         return df
-#     except Exception as e:
-#         print(f"Error in getRecommendationForPlanRest: {e}")
-#         return None
-#
-# # Example call
-# getRecommendationForPlanRest(2, "Cairo")
-############################################################################
-
+script_dir = os.path.dirname(os.path.abspath(__file__))  # Path to the 'Plan' directory
+project_root = os.path.dirname(script_dir)  # Path to the project root
 
 def getRecommendationForPlanRest (userID, City):
-    csvRestInfo = r"E:\FCIS\GP\GP\TravelRecommeder_Flask-master\Plan\Allrestaurants2.csv"
-    timesCsv = r"E:\FCIS\GP\GP\TravelRecommeder_Flask-master\Plan\Allrestaurants3.csv"
+    csvRestInfo = os.path.join(project_root, 'Plan','Allrestaurants2.csv')
+    timesCsv = os.path.join(project_root, 'Plan','Allrestaurants3.csv')
     timesSpark = spark.read.csv(timesCsv, header=True)
-    csvRatingInfoRest = r'E:\FCIS\GP\GP\TravelRecommeder_Flask-master\user_profiling_rest.csv'
+    csvRatingInfoRest = os.path.join(project_root, 'Restaurants','user_profiling_rest.csv')
     # when entering a new user we do have to retrain the entire model
     ratingsSparkRest, rest = initial_files_Rest(csvRestInfo, csvRatingInfoRest)
     calculateSparsityRest(ratingsSparkRest)
@@ -100,8 +59,7 @@ def changeTimeFormat(df):
 def formatRecommendations (city,id):
     restaurants_df = getRecommendationForPlanRest(id, city)
 
-    script_dir = os.path.dirname(os.path.abspath(__file__))  # Path to the 'Plan' directory
-    project_root = os.path.dirname(script_dir)  # Path to the project root
+
     attractions_data_path = os.path.join(project_root, 'attractions_reccommendation', 'attractions.csv')
     print(f"Attempting to load attractions data from: {attractions_data_path}")
     print(f"Attempting to load attractions data from: {script_dir}")
@@ -131,7 +89,8 @@ def formatRecommendations (city,id):
         data['restaurants'].append(restaurant)
     # print('data================>\n',data.values())
 
-    timesAttract = pd.read_csv(r'E:\FCIS\GP\GP\TravelRecommeder_Flask-master\attractions_reccommendation\Attractions open hours.csv')
+    timesAttract_path= os.path.join(project_root, 'attractions_reccommendation','Attractions open hours.csv')
+    timesAttract = pd.read_csv(timesAttract_path)
 
     # select = timesAttract.loc[:, ['attraction_id', 'open_time', 'close_time']]
 

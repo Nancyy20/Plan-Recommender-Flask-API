@@ -4,6 +4,8 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 from sklearn.metrics.pairwise import cosine_similarity
+
+
 df = pd.read_csv(r"E:\FCIS\GP\GP\TravelRecommeder_Flask-master\Restaurants\Allrestaurants.csv", encoding='latin1')
 
 #print(df.head())
