@@ -1,21 +1,6 @@
 import math
 import datetime
 
-
-# def convert_to_24h(time_str):
-#     # Convert the time string to a datetime object with the strptime() method
-#     time_obj = datetime.datetime.strptime(time_str, "%I%p")
-#
-#     # Extract the hour from the datetime object and convert it to an integer
-#     hour_24h = int(time_obj.strftime("%H"))
-#     return hour_24h
-import re
-from datetime import datetime
-
-from datetime import datetime
-from datetime import datetime
-
-from datetime import datetime
 from Plan.formatRecForPlan import formatRecommendations
 
 def is_open(open_time, close_time, check_time):
