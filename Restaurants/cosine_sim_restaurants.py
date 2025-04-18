@@ -2,13 +2,16 @@ import pandas as pd
 import numpy as np
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
-
+import os
 from sklearn.metrics.pairwise import cosine_similarity
 
 
-df = pd.read_csv(r"E:\FCIS\GP\GP\TravelRecommeder_Flask-master\Restaurants\Allrestaurants.csv", encoding='latin1')
+script_dir = os.path.dirname(os.path.abspath(__file__))  # Path to the 'Plan' directory
+project_root = os.path.dirname(script_dir)  # Path to the project root
 
-#print(df.head())
+df = pd.read_csv(os.path.join(project_root, 'Restaurants','Allrestaurants.csv'), encoding='latin1')
+
+# print(df.head())
 
 # fill missing values in the "cuisines" column
 df["cuisines"].fillna("", inplace=True)
