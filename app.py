@@ -134,4 +134,4 @@ def plan_recommendation(userId, city):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run() # in deployment removed debug=True --> it is only for development 
