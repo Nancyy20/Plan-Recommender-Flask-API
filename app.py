@@ -1,4 +1,14 @@
 import os
+import logging
+
+    # Set up logging
+logging.basicConfig(level=logging.INFO)
+
+    # Get JAVA_HOME environment variable
+java_home = os.environ.get('JAVA_HOME')
+
+    # Log the JAVA_HOME value
+logging.info(f"JAVA_HOME is set to: {java_home}")
 from Plan.planMultipleDays import plan_multiple_days
 # from Restaurants.cosine_sim_restaurants import get_recommendations
 # from Hotels.cosine_similiarity_hotels import get_recommendation
@@ -135,15 +145,6 @@ def plan_recommendation(userId, city):
 
 
 if __name__ == '__main__':
-    import logging
 
-    # Set up logging
-    logging.basicConfig(level=logging.INFO)
-
-    # Get JAVA_HOME environment variable
-    java_home = os.environ.get('JAVA_HOME')
-
-    # Log the JAVA_HOME value
-    logging.info(f"JAVA_HOME is set to: {java_home}")
 
     app.run(debug=True,port=os.getenv("PORT", default=5000)) # in deployment removed debug=True --> it is only for development
