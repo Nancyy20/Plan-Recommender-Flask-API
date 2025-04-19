@@ -1,14 +1,4 @@
 import os
-import logging
-import subprocess
-
-    # Set up logging
-logging.basicConfig(level=logging.INFO)
-try:
-    java_version = subprocess.check_output(['java', '-version'], stderr=subprocess.STDOUT)
-    logging.info(f"Java Version: {java_version.decode('utf-8')}")
-except subprocess.CalledProcessError as e:
-    logging.error(f"Error: Java is not installed. {e.output.decode('utf-8')}")
 
 from Plan.planMultipleDays import plan_multiple_days
 # from Restaurants.cosine_sim_restaurants import get_recommendations
