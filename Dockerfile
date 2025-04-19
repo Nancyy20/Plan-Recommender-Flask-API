@@ -1,5 +1,5 @@
 # Base image
-FROM python:3.8
+FROM python:3.9
 
 ENV JAVA_HOME=/usr/local/lib/jvm/java-11-openjdk-amd64
 ENV PATH=$JAVA_HOME/bin:$PATH
