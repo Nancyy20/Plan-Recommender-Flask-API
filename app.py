@@ -1,4 +1,12 @@
 import os
+from pyspark.sql import SparkSession
+
+try:
+    spark = SparkSession.builder.appName("TestSpark").getOrCreate()
+    print("SparkSession created successfully!")
+    spark.stop()
+except Exception as e:
+    print(f"Error creating SparkSession: {e}")
 
 from Plan.planMultipleDays import plan_multiple_days
 # from Restaurants.cosine_sim_restaurants import get_recommendations
