@@ -1,8 +1,8 @@
 # Base image
 FROM python:3.9
 
-ENV JAVA_HOME=/usr/local/lib/jvm/java-11-openjdk-amd64
-ENV PATH=$JAVA_HOME/bin:$PATH
+# ENV JAVA_HOME=/usr/local/lib/jvm/java-11-openjdk-amd64
+# ENV PATH=$JAVA_HOME/bin:$PATH
 # Set the working directory in the container
 WORKDIR /app
 
