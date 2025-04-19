@@ -135,4 +135,6 @@ def plan_recommendation(userId, city):
 
 
 if __name__ == '__main__':
+    java_home = os.environ.get('JAVA_HOME')
+    print(f"JAVA_HOME is set to: {java_home}")
     app.run(debug=True,port=os.getenv("PORT", default=5000)) # in deployment removed debug=True --> it is only for development
