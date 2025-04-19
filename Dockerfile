@@ -1,18 +1,16 @@
-# Use a base image with both Python and OpenJDK preinstalled
-FROM openjdk:11-jdk-slim
+# Base image
+FROM python:3.8
 
-# Install Python dependencies
-COPY requirements.txt .
-RUN pip3 install --no-cache-dir -r requirements.txt
-
-# Copy the app code into the container
-COPY . /app
-
-# Set the working directory
+# Set the working directory in the container
 WORKDIR /app
 
-# Expose the application port
-EXPOSE 8080
+# Copy the application code into the container
+COPY . .
 
-# Command to run your Flask app
-CMD ["gunicorn", "app:app", "--workers", "4", "--bind", "0.0.0.0:$PORT"]
+# Install Python dependencies
+RUN pip install  -r requirements.txt
+
+
+# Set the entrypoint command
+ENTRYPOINT ["python"]
+CMD [ "app.py" ]
