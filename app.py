@@ -136,6 +136,4 @@ def plan_recommendation(userId, city):
 
 
 if __name__ == '__main__':
-
-
-    app.run(debug=True,port=os.getenv("PORT", default=5000)) # in deployment removed debug=True --> it is only for development
+    app.run() # in deployment removed debug=True,port=os.getenv("PORT", default=5000) --> it is only for development
