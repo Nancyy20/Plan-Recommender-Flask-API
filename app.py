@@ -1,3 +1,4 @@
+import os
 from Plan.planMultipleDays import plan_multiple_days
 # from Restaurants.cosine_sim_restaurants import get_recommendations
 # from Hotels.cosine_similiarity_hotels import get_recommendation
@@ -134,4 +135,4 @@ def plan_recommendation(userId, city):
 
 
 if __name__ == '__main__':
-    app.run() # in deployment removed debug=True --> it is only for development
+    app.run(debug=True,port=os.getenv("PORT", default=5000)) # in deployment removed debug=True --> it is only for development
