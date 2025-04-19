@@ -1,14 +1,15 @@
 import os
 import logging
+import subprocess
 
     # Set up logging
 logging.basicConfig(level=logging.INFO)
+try:
+    java_version = subprocess.check_output(['java', '-version'], stderr=subprocess.STDOUT)
+    logging.info(f"Java Version: {java_version.decode('utf-8')}")
+except subprocess.CalledProcessError as e:
+    logging.error(f"Error: Java is not installed. {e.output.decode('utf-8')}")
 
-    # Get JAVA_HOME environment variable
-java_home = os.environ.get('JAVA_HOME')
-
-    # Log the JAVA_HOME value
-logging.info(f"JAVA_HOME is set to: {java_home}")
 from Plan.planMultipleDays import plan_multiple_days
 # from Restaurants.cosine_sim_restaurants import get_recommendations
 # from Hotels.cosine_similiarity_hotels import get_recommendation
